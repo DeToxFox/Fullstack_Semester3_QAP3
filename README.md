@@ -2,10 +2,10 @@
 
 Semester 3 QAP3, build a RESTful API, Node/Express/EJS/PostgreSQ
 
-Date: Nov 25, 2022
-Assignment: QAP3 - build a RESTful API, Node/Express/EJS/PostgreSQ
-Course Name: Full Stack JavaScript
-Written By: David Turner
+- Date: Nov 25, 2022
+- Assignment: QAP3 - build a RESTful API, Node/Express/EJS/PostgreSQ
+- Course Name: Full Stack JavaScript
+- Written By: David Turner
 
 1. Run npm init : this creates a basic package.json file
 2. Run npm i --save-dev nodemon : installs nodemon to automatically refresh terminal while coding, check package.json to see the "dependency" section
