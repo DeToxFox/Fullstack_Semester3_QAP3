@@ -51,8 +51,10 @@ router.put("/:id", async (req, res) => {
   try {
     await actorsDal.putActor(
       req.params.id,
-      req.body.firstName,
-      req.body.lastName
+      req.body.genres,
+      req.body.title,
+      req.body.rated,
+      req.body.year
     );
     res.statusCode = 200;
     res.json({ message: "OK", status: 200 });
@@ -67,8 +69,10 @@ router.patch("/:id", async (req, res) => {
   try {
     await actorsDal.patchActor(
       req.params.id,
-      req.body.firstName,
-      req.body.lastName
+      req.body.genres,
+      req.body.title,
+      req.body.rated,
+      req.body.year
     );
     res.statusCode = 200;
     res.json({ message: "OK", status: 200 });
