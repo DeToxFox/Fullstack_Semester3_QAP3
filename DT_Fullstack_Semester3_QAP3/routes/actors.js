@@ -30,7 +30,7 @@ router.get("/:id", async (req, res) => {
     res.render("503");
   }
 });
-
+// my fix
 router.get("/:id/replace", async (req, res) => {
   if (DEBUG) console.log("actor.Replace : " + req.params.id);
   res.render("actorPut.ejs", {
