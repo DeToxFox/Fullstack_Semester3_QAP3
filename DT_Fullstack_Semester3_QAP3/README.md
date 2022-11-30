@@ -29,3 +29,5 @@ if scripts already exists do the following, NOTE a comma has to seperate the 2
 "devStart": "nodemon index.js"
 
 }, 4. Then run the command npm run devStart
+
+5. Added note for this you have to install, npm install method-override and npm install mongoose, seperately after npm install -y
