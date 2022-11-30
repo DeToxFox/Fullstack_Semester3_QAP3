@@ -30,14 +30,15 @@ router.get("/:id", async (req, res) => {
     res.render("503");
   }
 });
-
+// my fix
 router.get("/:id/replace", async (req, res) => {
   if (DEBUG) console.log("actor.Replace : " + req.params.id);
   res.render("actorPut.ejs", {
     genres: req.query.genres,
     title: req.query.title,
-    rated: req.params.rated,
-    year: req.params.year,
+    rated: req.query.rated,
+    year: req.query.year,
+    id: req.params.id,
   });
 });
 
@@ -46,8 +47,9 @@ router.get("/:id/edit", async (req, res) => {
   res.render("actorPatch.ejs", {
     genres: req.query.genres,
     title: req.query.title,
-    rated: req.params.rated,
-    year: req.params.year,
+    rated: req.query.rated,
+    year: req.query.year,
+    id: req.params.id,
   });
 });
 
@@ -56,8 +58,9 @@ router.get("/:id/delete", async (req, res) => {
   res.render("actorDelete.ejs", {
     genres: req.query.genres,
     title: req.query.title,
-    rated: req.params.rated,
-    year: req.params.year,
+    rated: req.query.rated,
+    year: req.query.year,
+    id: req.params.id,
   });
 });
 
