@@ -18,18 +18,26 @@ async function getActorByActorId(id) {
   try {
     await dal.connect();
     const result = dal
-      .db("Auth")
-      .collection("actor")
+      .db("sample_mflix")
+      .collection("movieList")
       .findOne({ _id: ObjectId(id) });
     return result;
   } catch (error) {
     console.log(error);
   }
 }
-async function addActor(title, year) {
+async function addActor(genres, title, rated, year) {
   if (DEBUG) console.log("actors.mongo.dal.addActor()");
   let newLogin = JSON.parse(
-    `{ "title": "` + title + `", "year": "` + year + `" }`
+    `{  "genres": "` +
+      genres +
+      `", "title": "` +
+      title +
+      `", "rated": "` +
+      rated +
+      `","year": "` +
+      year +
+      `" }`
   );
   try {
     await dal.connect();
@@ -42,32 +50,34 @@ async function addActor(title, year) {
     console.log(error);
   }
 }
-async function putActor(id, title, year) {
+
+async function putActor(id, genres, title, rated, year) {
   if (DEBUG) console.log("actors.mongo.dal.putActor()");
   try {
     await dal.connect();
     const result = await dal
-      .db("Auth")
-      .collection("actor")
+      .db("sample_mflix")
+      .collection("movieList")
       .replaceOne(
         { _id: ObjectId(id) },
-        { first_name: fname, last_name: lname }
+        { genres: genres, title: title, rated: rated, year: year }
       );
     return result;
   } catch (error) {
     console.log(error);
   }
 }
-async function patchActor(id, fname, lname) {
+
+async function patchActor(id, genres, title, rated, year) {
   if (DEBUG) console.log("actors.mongo.dal.patchActor()");
   try {
     await dal.connect();
     const result = await dal
-      .db("Auth")
-      .collection("actor")
+      .db("sample_mflix")
+      .collection("movieList")
       .updateOne(
         { _id: ObjectId(id) },
-        { $set: { first_name: fname, last_name: lname } },
+        { $set: { genres: genres, title: title, rated: rated, year: year } },
         { upsert: true, returnDocument: "after" }
       );
     return result;
@@ -80,8 +90,8 @@ async function deleteActor(id) {
   try {
     await dal.connect();
     const result = dal
-      .db("Auth")
-      .collection("actor")
+      .db("sample_mflix")
+      .collection("movieList")
       .deleteOne({ _id: ObjectId(id) });
     return result;
   } catch (error) {

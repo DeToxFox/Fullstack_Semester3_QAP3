@@ -34,34 +34,42 @@ router.get("/:id", async (req, res) => {
 router.get("/:id/replace", async (req, res) => {
   if (DEBUG) console.log("actor.Replace : " + req.params.id);
   res.render("actorPut.ejs", {
-    firstName: req.query.firstName,
-    lastName: req.query.lastName,
-    theId: req.params.id,
+    genres: req.query.genres,
+    title: req.query.title,
+    rated: req.params.rated,
+    year: req.params.year,
   });
 });
 
 router.get("/:id/edit", async (req, res) => {
   if (DEBUG) console.log("actor.Edit : " + req.params.id);
   res.render("actorPatch.ejs", {
-    firstName: req.query.firstName,
-    lastName: req.query.lastName,
-    theId: req.params.id,
+    genres: req.query.genres,
+    title: req.query.title,
+    rated: req.params.rated,
+    year: req.params.year,
   });
 });
 
 router.get("/:id/delete", async (req, res) => {
   if (DEBUG) console.log("actor.Delete : " + req.params.id);
   res.render("actorDelete.ejs", {
-    firstName: req.query.firstName,
-    lastName: req.query.lastName,
-    theId: req.params.id,
+    genres: req.query.genres,
+    title: req.query.title,
+    rated: req.params.rated,
+    year: req.params.year,
   });
 });
 
 router.post("/", async (req, res) => {
   if (DEBUG) console.log("actors.POST");
   try {
-    await actorsDal.addActor(req.body.title, req.body.year);
+    await actorsDal.addActor(
+      req.body.genres,
+      req.body.title,
+      req.body.rated,
+      req.body.year
+    );
     res.redirect("/actors/");
   } catch {
     // log this error to an error log file.
@@ -77,8 +85,10 @@ router.put("/:id", async (req, res) => {
   try {
     await actorsDal.putActor(
       req.params.id,
-      req.body.firstName,
-      req.body.lastName
+      req.body.genres,
+      req.body.title,
+      req.body.rated,
+      req.body.year
     );
     res.redirect("/actors/");
   } catch {
@@ -91,8 +101,10 @@ router.patch("/:id", async (req, res) => {
   try {
     await actorsDal.patchActor(
       req.params.id,
-      req.body.firstName,
-      req.body.lastName
+      req.body.genres,
+      req.body.title,
+      req.body.rated,
+      req.body.year
     );
     res.redirect("/actors/");
   } catch {

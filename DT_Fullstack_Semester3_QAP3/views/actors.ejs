@@ -6,19 +6,29 @@
             <form action="/actors" method="POST">
                 <b>Actors: </b></br> 
             <% if (theActors.length > 0) { %>
-                <% theActors.forEach(actor => { %>
-                    <b><%= actor.first_name %> <%= actor.last_name %></b>
-                    <a href="/actors/<%=actor._id%>/edit?firstName=<%=actor.first_name%>&lastName=<%=actor.last_name%>">edit</a>
-                    <a href="/actors/<%=actor._id%>/delete?firstName=<%=actor.first_name%>&lastName=<%=actor.last_name%>">delete</a>
-                    <a href="/actors/<%=actor._id%>/replace?firstName=<%=actor.first_name%>&lastName=<%=actor.last_name%>">replace</a></br> 
+                <% theActors.forEach(movieList => { %>
+                    <b><%= movieList.title %> <%= movieList.genres %> <%= movieList.rated %> <%= movieList.year %></b>
+                    <a href="/actors/<%=movieList._id%>/edit?genres=<%=movieList.genres%>&title=<%=movieList.title%>&rated=<%=movieList.rated%>&year=<%=movieList.year%>">edit</a>
+
+                
+
+                    <a href="/actors/<%=movieList._id%>/delete?title=<%=movieList.title%>&year=<%=movieList.year%>">delete</a>
+                    
+                    <a href="/actors/<%=movieList._id%>/replace?title=<%=movieList.title%>&genres=<%=movieList.genres%>&rated=<%=movieList.rated%>&year=<%=movieList.year%>">replace</a></br> 
                     <% }) %>
             <% } %>
-            </br><label>Add Actor:</label></br>
-            <label>First Name:
-                <input type="text" id="title" name="title" value="<%= locals.title %>" required>
+            </br><label>Add New Movie:</label></br>
+            <label>Movie Genres:
+                <input placeholder="Genre Type" type="text" id="genres" name="genres" value="<%= locals.genres %>" required>
             </label>
-            <label>Last Name:
-                <input type="text" id="year" name="year" value="<%= locals.year %>" required>
+            <label>Movie Title:
+                <input placeholder="Movie Title" type="text" id="title" name="title" value="<%= locals.title %>" required>
+            </label>
+            <label>Movie Rating (G, PG, PG-13, R, UNRATED):
+                <input placeholder="Movie Rating" type="text" id="rated" name="rated" value="<%= locals.rated %>" required>
+            </label>
+            <label>Release Year:
+                <input placeholder="Year Released" type="text" id="year" name="year" value="<%= locals.year %>" required>
             </label>
             </br>
             <button>POST</button>
