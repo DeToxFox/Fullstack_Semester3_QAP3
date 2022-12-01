@@ -6,11 +6,11 @@
             <form action="/mngr" method="POST">
                 <b><h1>Management Alterations To The Films Database</h1></b></br> 
             <% if (theActors.length > 0) { %>
-                <% theActors.forEach(movieList => { %>
-                    <b><%= movieList.title %> <%= movieList.genres %> <%= movieList.rated %> <%= movieList.year %></b>
-                    <a href="/mngr/<%=movieList._id%>/edit?genres=<%=movieList.genres%>&title=<%=movieList.title%>&rated=<%=movieList.rated%>&year=<%=movieList.year%>">edit</a>
-                    <a href="/mngr/<%=movieList._id%>/delete?title=<%=movieList.title%>&year=<%=movieList.year%>">delete</a>
-                    <a href="/mngr/<%=movieList._id%>/replace?title=<%=movieList.title%>&genres=<%=movieList.genres%>&rated=<%=movieList.rated%>&year=<%=movieList.year%>">replace</a></br> 
+                <% theActors.forEach(moviesList => { %>
+                    <b><%= moviesList.title %> <%= moviesList.genres %> <%= moviesList.rated %> <%= moviesList.year %></b>
+                    <a href="/mngr/<%=moviesList._id%>/edit?genres=<%=moviesList.genres%>&title=<%=moviesList.title%>&rated=<%=moviesList.rated%>&year=<%=moviesList.year%>">edit</a>
+                    <a href="/mngr/<%=moviesList._id%>/delete?title=<%=moviesList.title%>&year=<%=moviesList.year%>">delete</a>
+                    <a href="/mngr/<%=moviesList._id%>/replace?title=<%=moviesList.title%>&genres=<%=moviesList.genres%>&rated=<%=moviesList.rated%>&year=<%=moviesList.year%>">replace</a></br> 
                     <% }) %>
             <% } %>
         </form>
