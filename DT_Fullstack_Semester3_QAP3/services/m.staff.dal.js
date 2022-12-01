@@ -26,7 +26,7 @@ async function getMoviesByMovieId(id) {
     console.log(error);
   }
 }
-async function addMovie(genres, title, rated, year) {
+async function addMovie(genres, title, rated, year, theStatusCode) {
   if (DEBUG) console.log("staff.mongo.dal.addMovie()");
   let newLogin = JSON.parse(
     `{  "genres": "` +
@@ -47,6 +47,7 @@ async function addMovie(genres, title, rated, year) {
       .insertOne(newLogin);
     return result.insertedId;
   } catch (error) {
+    theStatusCode;
     console.log(error);
   }
 }

@@ -31,3 +31,6 @@ if scripts already exists do the following, NOTE a comma has to seperate the 2
 }, 4. Then run the command npm run devStart
 
 5. Added note for this you have to install, npm install method-override and npm install mongoose, seperately after npm install -y
+
+6. Install npm install uuid (Universally Unique Identifiers)
+7. Install npm install date

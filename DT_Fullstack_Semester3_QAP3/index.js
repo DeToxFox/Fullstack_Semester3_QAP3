@@ -18,8 +18,10 @@ app.get("/about", (request, response) => {
 
 const moviesRouter = require("./routes/movies");
 app.use("/movies", moviesRouter);
+
 const staffRouter = require("./routes/staff");
 app.use("/staff", staffRouter);
+
 const mngrRouter = require("./routes/mngr");
 app.use("/mngr", mngrRouter);
 
