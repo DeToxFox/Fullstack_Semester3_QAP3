@@ -1,9 +1,8 @@
 const { ObjectId } = require("mongodb");
 const dal = require("./mdb");
 
-// commit?
-async function getActors() {
-  if (DEBUG) console.log("movies.mongo.dal.getActors()");
+async function getMovies() {
+  if (DEBUG) console.log("movies.mongo.dal.getMovies()");
   try {
     await dal.connect();
     const cursor = dal.db("sample_mflix").collection("moviesList").find();
@@ -14,8 +13,8 @@ async function getActors() {
   }
 }
 
-async function getActorByActorId(id) {
-  if (DEBUG) console.log("movies.mongo.dal.getActorByActorId()");
+async function getMoviesByMovieId(id) {
+  if (DEBUG) console.log("movies.mongo.dal.getMoviesByMovieId()");
   try {
     await dal.connect();
     const result = dal
@@ -28,8 +27,8 @@ async function getActorByActorId(id) {
     console.log(error);
   }
 }
-async function addActor(genres, title, rated, year) {
-  if (DEBUG) console.log("movies.mongo.dal.addActor()");
+async function addMovie(genres, title, rated, year) {
+  if (DEBUG) console.log("movies.mongo.dal.addMovie()");
   let newLogin = JSON.parse(
     `{  "genres": "` +
       genres +
@@ -53,8 +52,8 @@ async function addActor(genres, title, rated, year) {
   }
 }
 
-async function putActor(id, genres, title, rated, year) {
-  if (DEBUG) console.log("movies.mongo.dal.putActor()");
+async function putMovie(id, genres, title, rated, year) {
+  if (DEBUG) console.log("movies.mongo.dal.putMovie()");
   try {
     await dal.connect();
     const result = await dal
@@ -70,8 +69,8 @@ async function putActor(id, genres, title, rated, year) {
   }
 }
 
-async function patchActor(id, genres, title, rated, year) {
-  if (DEBUG) console.log("movies.mongo.dal.patchActor()");
+async function patchMovie(id, genres, title, rated, year) {
+  if (DEBUG) console.log("movies.mongo.dal.patchMovie()");
   try {
     await dal.connect();
     const result = await dal
@@ -87,8 +86,8 @@ async function patchActor(id, genres, title, rated, year) {
     console.log(error);
   }
 }
-async function deleteActor(id) {
-  if (DEBUG) console.log("movies.mongo.dal.deleteActor()");
+async function deleteMovie(id) {
+  if (DEBUG) console.log("movies.mongo.dal.deleteMovie()");
   try {
     await dal.connect();
     const result = dal
@@ -102,10 +101,10 @@ async function deleteActor(id) {
 }
 
 module.exports = {
-  getActors,
-  getActorByActorId,
-  addActor,
-  putActor,
-  patchActor,
-  deleteActor,
+  getMovies,
+  getMoviesByMovieId,
+  addMovie,
+  putMovie,
+  patchMovie,
+  deleteMovie,
 };
