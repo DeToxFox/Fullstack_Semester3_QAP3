@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-// const actorsDal = require('../services/pg.actors.dal')
-const actorsDal = require("../services/m.actors.dal");
+// const staffDal = require('../services/pg.staff.dal')
+const staffDal = require("../services/m.staff.dal");
 
 router.get("/", async (req, res) => {
   // const theActors = [
@@ -10,9 +10,9 @@ router.get("/", async (req, res) => {
   //     {first_name: 'Regina', last_name: 'King'}
   // ];
   try {
-    let theActors = await actorsDal.getActors();
+    let theActors = await staffDal.getActors();
     if (DEBUG) console.table(theActors);
-    res.render("actors", { theActors });
+    res.render("staff", { theActors });
   } catch {
     res.render("503");
   }
@@ -23,17 +23,17 @@ router.get("/:id", async (req, res) => {
   //     {first_name: 'Regina', last_name: 'King'}
   // ];
   try {
-    let anActor = await actorsDal.getActorByActorId(req.params.id); // from postgresql
-    if (anActor.length === 0) res.render("norecord");
-    else res.render("actor", { anActor });
+    let anActor = await staffDal.getActorByActorId(req.params.id); // from postgresql
+    if (anActor.length === 0) res.render("no record");
+    else res.render("staff", { anActor });
   } catch {
     res.render("503");
   }
 });
-// my fix
+
 router.get("/:id/replace", async (req, res) => {
-  if (DEBUG) console.log("actor.Replace : " + req.params.id);
-  res.render("actorPut.ejs", {
+  if (DEBUG) console.log("movie.Replace : " + req.params.id);
+  res.render("moviePut.ejs", {
     genres: req.query.genres,
     title: req.query.title,
     rated: req.query.rated,
@@ -43,8 +43,8 @@ router.get("/:id/replace", async (req, res) => {
 });
 
 router.get("/:id/edit", async (req, res) => {
-  if (DEBUG) console.log("actor.Edit : " + req.params.id);
-  res.render("actorPatch.ejs", {
+  if (DEBUG) console.log("movie.Edit : " + req.params.id);
+  res.render("moviePatch.ejs", {
     genres: req.query.genres,
     title: req.query.title,
     rated: req.query.rated,
@@ -54,8 +54,8 @@ router.get("/:id/edit", async (req, res) => {
 });
 
 router.get("/:id/delete", async (req, res) => {
-  if (DEBUG) console.log("actor.Delete : " + req.params.id);
-  res.render("actorDelete.ejs", {
+  if (DEBUG) console.log("movie.Delete : " + req.params.id);
+  res.render("movieDelete.ejs", {
     genres: req.query.genres,
     title: req.query.title,
     rated: req.query.rated,
@@ -65,15 +65,15 @@ router.get("/:id/delete", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  if (DEBUG) console.log("actors.POST");
+  if (DEBUG) console.log("movie.POST");
   try {
-    await actorsDal.addActor(
+    await staffDal.addActor(
       req.body.genres,
       req.body.title,
       req.body.rated,
       req.body.year
     );
-    res.redirect("/actors/");
+    res.redirect("/staff/");
   } catch {
     // log this error to an error log file.
     res.render("503");
@@ -84,42 +84,42 @@ router.post("/", async (req, res) => {
 // Therefore, <form method="PUT" ...> doesn't work, but it does work for RESTful API
 
 router.put("/:id", async (req, res) => {
-  if (DEBUG) console.log("actors.PUT: " + req.params.id);
+  if (DEBUG) console.log("movie.PUT: " + req.params.id);
   try {
-    await actorsDal.putActor(
+    await staffDal.putActor(
       req.params.id,
       req.body.genres,
       req.body.title,
       req.body.rated,
       req.body.year
     );
-    res.redirect("/actors/");
+    res.redirect("/staff/");
   } catch {
     // log this error to an error log file.
     res.render("503");
   }
 });
 router.patch("/:id", async (req, res) => {
-  if (DEBUG) console.log("actors.PATCH: " + req.params.id);
+  if (DEBUG) console.log("movie.PATCH: " + req.params.id);
   try {
-    await actorsDal.patchActor(
+    await staffDal.patchActor(
       req.params.id,
       req.body.genres,
       req.body.title,
       req.body.rated,
       req.body.year
     );
-    res.redirect("/actors/");
+    res.redirect("/staff/");
   } catch {
     // log this error to an error log file.
     res.render("503");
   }
 });
 router.delete("/:id", async (req, res) => {
-  if (DEBUG) console.log("actors.DELETE: " + req.params.id);
+  if (DEBUG) console.log("movie.DELETE: " + req.params.id);
   try {
-    await actorsDal.deleteActor(req.params.id);
-    res.redirect("/actors/");
+    await staffDal.deleteActor(req.params.id);
+    res.redirect("/staff/");
   } catch {
     // log this error to an error log file.
     res.render("503");

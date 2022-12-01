@@ -2,7 +2,7 @@ const { ObjectId } = require("mongodb");
 const dal = require("./mdb");
 
 async function getActors() {
-  if (DEBUG) console.log("actors.mongo.dal.getActors()");
+  if (DEBUG) console.log("movies.mongo.dal.getActors()");
   try {
     await dal.connect();
     const cursor = dal.db("sample_mflix").collection("movieList").find();
@@ -14,20 +14,21 @@ async function getActors() {
 }
 
 async function getActorByActorId(id) {
-  if (DEBUG) console.log("actors.mongo.dal.getActorByActorId()");
+  if (DEBUG) console.log("movies.mongo.dal.getActorByActorId()");
   try {
     await dal.connect();
     const result = dal
       .db("sample_mflix")
       .collection("movieList")
       .findOne({ _id: ObjectId(id) });
+    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
   }
 }
 async function addActor(genres, title, rated, year) {
-  if (DEBUG) console.log("actors.mongo.dal.addActor()");
+  if (DEBUG) console.log("movies.mongo.dal.addActor()");
   let newLogin = JSON.parse(
     `{  "genres": "` +
       genres +
@@ -52,7 +53,7 @@ async function addActor(genres, title, rated, year) {
 }
 
 async function putActor(id, genres, title, rated, year) {
-  if (DEBUG) console.log("actors.mongo.dal.putActor()");
+  if (DEBUG) console.log("movies.mongo.dal.putActor()");
   try {
     await dal.connect();
     const result = await dal
@@ -69,7 +70,7 @@ async function putActor(id, genres, title, rated, year) {
 }
 
 async function patchActor(id, genres, title, rated, year) {
-  if (DEBUG) console.log("actors.mongo.dal.patchActor()");
+  if (DEBUG) console.log("movies.mongo.dal.patchActor()");
   try {
     await dal.connect();
     const result = await dal
@@ -86,7 +87,7 @@ async function patchActor(id, genres, title, rated, year) {
   }
 }
 async function deleteActor(id) {
-  if (DEBUG) console.log("actors.mongo.dal.deleteActor()");
+  if (DEBUG) console.log("movies.mongo.dal.deleteActor()");
   try {
     await dal.connect();
     const result = dal

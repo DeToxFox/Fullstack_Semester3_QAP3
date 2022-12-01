@@ -1,0 +1,20 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="movies content">
+            <form action="/mngr" method="POST">
+                <b><h1>Management Alterations To The Films Database</h1></b></br> 
+            <% if (theActors.length > 0) { %>
+                <% theActors.forEach(movieList => { %>
+                    <b><%= movieList.title %> <%= movieList.genres %> <%= movieList.rated %> <%= movieList.year %></b>
+                    <a href="/mngr/<%=movieList._id%>/edit?genres=<%=movieList.genres%>&title=<%=movieList.title%>&rated=<%=movieList.rated%>&year=<%=movieList.year%>">edit</a>
+                    <a href="/mngr/<%=movieList._id%>/delete?title=<%=movieList.title%>&year=<%=movieList.year%>">delete</a>
+                    <a href="/mngr/<%=movieList._id%>/replace?title=<%=movieList.title%>&genres=<%=movieList.genres%>&rated=<%=movieList.rated%>&year=<%=movieList.year%>">replace</a></br> 
+                    <% }) %>
+            <% } %>
+        </form>
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>

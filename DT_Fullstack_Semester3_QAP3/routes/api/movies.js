@@ -1,10 +1,10 @@
 var router = require("express").Router();
-//const actorsDal = require('../../services/pg.actors.dal')
-const actorsDal = require("../../services/m.actors.dal");
+//const actorsDal = require('../../services/pg.movies.dal')
+const actorsDal = require("../../services/m.movies.dal");
 
-// api/actors
+// api/movies
 router.get("/", async (req, res) => {
-  if (DEBUG) console.log("ROUTE: /api/actors/ GET " + req.url);
+  if (DEBUG) console.log("ROUTE: /api/movies/ GET " + req.url);
   try {
     let theActors = await actorsDal.getActors();
     res.json(theActors);
@@ -14,9 +14,9 @@ router.get("/", async (req, res) => {
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });
-// api/actors/:id
+// api/movies/:id
 router.get("/:id", async (req, res) => {
-  if (DEBUG) console.log("ROUTE: /api/actors/:id GET " + req.url);
+  if (DEBUG) console.log("ROUTE: /api/movies/:id GET " + req.url);
   try {
     let anActor = await actorsDal.getActorByActorId(req.params.id);
     if (anActor.length === 0) {
@@ -32,7 +32,7 @@ router.get("/:id", async (req, res) => {
 });
 router.post("/", async (req, res) => {
   if (DEBUG) {
-    console.log("ROUTE: /api/actors/ POST");
+    console.log("ROUTE: /api/movies/ POST");
     //    console.log(req);
   }
   try {
@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
   }
 });
 router.put("/:id", async (req, res) => {
-  if (DEBUG) console.log("ROUTE: /api/actors PUT " + req.params.id);
+  if (DEBUG) console.log("ROUTE: /api/movies PUT " + req.params.id);
   try {
     await actorsDal.putActor(
       req.params.id,
@@ -65,7 +65,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 router.patch("/:id", async (req, res) => {
-  if (DEBUG) console.log("ROUTE: /api/actors PATCH " + req.params.id);
+  if (DEBUG) console.log("ROUTE: /api/movies PATCH " + req.params.id);
   try {
     await actorsDal.patchActor(
       req.params.id,
@@ -83,7 +83,7 @@ router.patch("/:id", async (req, res) => {
   }
 });
 router.delete("/:id", async (req, res) => {
-  if (DEBUG) console.log("ROUTE: /api/actors DELETE " + req.params.id);
+  if (DEBUG) console.log("ROUTE: /api/movies DELETE " + req.params.id);
   try {
     await actorsDal.deleteActor(req.params.id);
     res.statusCode = 200;

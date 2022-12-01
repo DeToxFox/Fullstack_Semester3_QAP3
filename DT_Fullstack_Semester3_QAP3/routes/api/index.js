@@ -4,7 +4,7 @@ if (DEBUG) {
   console.log("ROUTE: /api/actors");
 }
 
-const actorsRouter = require("./actors");
+const actorsRouter = require("./movies");
 router.use("/actors", actorsRouter);
 
 module.exports = router;
