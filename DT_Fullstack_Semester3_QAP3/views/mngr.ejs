@@ -5,8 +5,8 @@
         <div class="movies content">
             <form action="/mngr" method="POST">
                 <b><h1>Management Alterations To The Films Database</h1></b></br> 
-            <% if (theActors.length > 0) { %>
-                <% theActors.forEach(moviesList => { %>
+            <% if (theMovies.length > 0) { %>
+                <% theMovies.forEach(moviesList => { %>
                     <b><%= moviesList.title %> <%= moviesList.genres %> <%= moviesList.rated %> <%= moviesList.year %></b>
                     <a href="/mngr/<%=moviesList._id%>/edit?genres=<%=moviesList.genres%>&title=<%=moviesList.title%>&rated=<%=moviesList.rated%>&year=<%=moviesList.year%>">edit</a>
                     <a href="/mngr/<%=moviesList._id%>/delete?title=<%=moviesList.title%>&year=<%=moviesList.year%>">delete</a>

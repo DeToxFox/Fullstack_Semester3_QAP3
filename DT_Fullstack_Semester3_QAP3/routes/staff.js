@@ -4,15 +4,15 @@ const router = express.Router();
 const staffDal = require("../services/m.staff.dal");
 
 router.get("/", async (req, res) => {
-  // const theActors = [
+  // const theMovies = [
   //     {first_name: 'Youn', last_name: 'Yuh-jung'},
   //     {first_name: 'Laura', last_name: 'Dern'},
   //     {first_name: 'Regina', last_name: 'King'}
   // ];
   try {
-    let theActors = await staffDal.getActors();
-    if (DEBUG) console.table(theActors);
-    res.render("staff", { theActors });
+    let theMovies = await staffDal.getMovies();
+    if (DEBUG) console.table(theMovies);
+    res.render("staff", { theMovies });
   } catch {
     res.render("503");
   }
@@ -23,7 +23,7 @@ router.get("/:id", async (req, res) => {
   //     {first_name: 'Regina', last_name: 'King'}
   // ];
   try {
-    let anActor = await staffDal.getActorByActorId(req.params.id); // from postgresql
+    let anActor = await staffDal.getMoviesByMovieId(req.params.id); // from postgresql
     if (anActor.length === 0) res.render("no record");
     else res.render("staff", { anActor });
   } catch {
@@ -67,7 +67,7 @@ router.get("/:id/delete", async (req, res) => {
 router.post("/", async (req, res) => {
   if (DEBUG) console.log("movie.POST");
   try {
-    await staffDal.addActor(
+    await staffDal.addMovie(
       req.body.genres,
       req.body.title,
       req.body.rated,
@@ -86,7 +86,7 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   if (DEBUG) console.log("movie.PUT: " + req.params.id);
   try {
-    await staffDal.putActor(
+    await staffDal.putMovie(
       req.params.id,
       req.body.genres,
       req.body.title,
@@ -102,7 +102,7 @@ router.put("/:id", async (req, res) => {
 router.patch("/:id", async (req, res) => {
   if (DEBUG) console.log("movie.PATCH: " + req.params.id);
   try {
-    await staffDal.patchActor(
+    await staffDal.patchMovie(
       req.params.id,
       req.body.genres,
       req.body.title,
@@ -118,7 +118,7 @@ router.patch("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   if (DEBUG) console.log("movie.DELETE: " + req.params.id);
   try {
-    await staffDal.deleteActor(req.params.id);
+    await staffDal.deleteMovie(req.params.id);
     res.redirect("/staff/");
   } catch {
     // log this error to an error log file.
