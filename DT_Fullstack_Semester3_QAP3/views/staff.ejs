@@ -34,7 +34,7 @@
         </form>
         <b>List of All Movies: </b>
             <% if (theMovies.length > 0) { %>
-                <% theMovies.forEach(moviesList => { %>
+                <% theMovies.reverse().forEach(moviesList => { %>
                     <b>
                         <ul>
                             <li>
