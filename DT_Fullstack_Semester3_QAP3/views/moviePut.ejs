@@ -3,7 +3,7 @@
     <body>
         <%- include('./partials/nav.ejs') %>
         <div class="create content">
-            <form action="/actors/<%= locals.id %>?_method=PUT" method="POST">
+            <form action="/mngr/<%= locals.id %>?_method=PUT" method="POST">
                 <label>Replace Movie Attributes:</br>
                     <input type="text" name="genres" value="<%= locals.genres %>" required>
                     <input type="text" name="title" value="<%= locals.title %>" required>

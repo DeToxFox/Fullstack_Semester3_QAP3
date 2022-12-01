@@ -1,0 +1,58 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="movies content">
+            <form action="/staff" method="POST">
+                <b><h1>Staff Members Please Add New Movies To the Database</h1></b></br> 
+            
+            <label><u>Add New Movie:</u></label></br>
+            <ul style="list-style: none;" >
+                <li>
+                    <label>Movie Genres:
+                        <input placeholder="Genre Type" type="text" id="genres" name="genres" value="<%= locals.genres %>" required>
+                    </label>
+                </li>
+                <li>
+                    <label>Movie Title:
+                        <input placeholder="Movie Title" type="text" id="title" name="title" value="<%= locals.title %>" required>
+                    </label>
+                </li>
+                <li>
+                    <label>Movie Rating:
+                        <input placeholder="G/PG/PG-13/R/NR" type="text" id="rated" name="rated" value="<%= locals.rated %>" required>
+                    </label>
+                </li>
+                <li>
+                    <label>Release Year:
+                        <input placeholder="Year Released" type="text" id="year" name="year" value="<%= locals.year %>" required>
+                    </label>
+                </li>
+            </br>
+            <button>POST</button>
+            </ul>
+        </form>
+        <b>List of All Movies: </b>
+            <% if (theActors.length > 0) { %>
+                <% theActors.forEach(movieList => { %>
+                    <b>
+                        <ul>
+                            <li>
+                                <%= `Title: ${movieList.title}` %> 
+                            </li>
+                            <li>
+                                <%= `Genres: ${movieList.genres}` %> 
+                            </li>
+                            <li>
+                                <%= `Rating: ${movieList.rated}` %> 
+                            </li>
+                            <li>
+                                <%= `Release Year: ${movieList.year}` %></b>
+                            </li>
+                        </ul>
+                    <% }) %>
+            <% } %>
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>

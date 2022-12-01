@@ -1,0 +1,31 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="movies content">
+            <form action="/movies" method="POST">
+                <b><h1>Please Enjoy Our Movie Selection</h1> </b></br> 
+                <b>List of All Movies: </b>
+                <% if (theActors.length > 0) { %>
+                    <% theActors.forEach(movieList => { %>
+                        <b>
+                            <ul>
+                                <li>
+                                    <%= `Title: ${movieList.title}` %> 
+                                </li>
+                                <li>
+                                    <%= `Genres: ${movieList.genres}` %> 
+                                </li>
+                                <li>
+                                    <%= `Rating: ${movieList.rated}` %> 
+                                </li>
+                                <li>
+                                    <%= `Release Year: ${movieList.year}` %></b>
+                                </li>
+                            </ul>
+                        <% }) %>
+                <% } %>
+            </form>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>
