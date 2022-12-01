@@ -30,7 +30,11 @@
                 </li>
             </br>
             <button>POST</button>
+            <!-- < % if (locals.message){ %>
+                <p class="success">< %=locals.message %></p>
+            < % } %> -->
             </ul>
+
         </form>
         <b>List of All Movies: </b>
             <% if (theMovies.length > 0) { %>

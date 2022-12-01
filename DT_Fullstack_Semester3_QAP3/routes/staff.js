@@ -3,6 +3,27 @@ const router = express.Router();
 // const staffDal = require('../services/pg.staff.dal')
 const staffDal = require("../services/m.staff.dal");
 
+// This will bring in the "fs" or file structure global object no npm install required
+const fs = require("fs");
+// This will bring in the "events" global object no npm install required
+const eventEmmitter = require("events");
+// Create the class MyEmitter to define it, making sure to the first letter is upper case, this is for classes
+class MyEmitter extends eventEmmitter {}
+// This instantiates a new emitter object that will be needed to access the index page
+const myEmitter = new MyEmitter();
+
+// This allows routes.js to access the functions within the logEvents.js
+const logEvents = require("./logEvents");
+
+// Creating an dot addListener or dot on function, it will have name "routes", this could be anything and functions below can have different names
+// to serve different purposes then there are in this case 3 parameters, event, level (ex: information, error), and a message that can be logged
+myEmitter.on("status", (theStatusCode) => {
+  console.log(theStatusCode);
+  // once the above part of the listeners has exicuted its block
+  // the logEvents function in logEvents.js will fire and the parameters here will be sent over to be processed
+  logEvents(theStatusCode);
+});
+
 router.get("/", async (req, res) => {
   // const theMovies = [
   //     {first_name: 'Youn', last_name: 'Yuh-jung'},
@@ -67,14 +88,19 @@ router.get("/:id/delete", async (req, res) => {
 router.post("/", async (req, res) => {
   if (DEBUG) console.log("movie.POST");
   try {
-    await staffDal.addMovie(
+    await staffDal.addMoviess(
       req.body.genres,
       req.body.title,
       req.body.rated,
       req.body.year
     );
+    // let message = "Post Successful";
     res.redirect("/staff/");
+    // res.render("staff", { message });
+    console.log("STAFF POST WORKED DT");
   } catch {
+    res.statusCode = 503;
+    myEmitter.emit("status", `${res.statusCode}`);
     // log this error to an error log file.
     res.render("503");
   }
