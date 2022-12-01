@@ -34,20 +34,20 @@
         </form>
         <b>List of All Movies: </b>
             <% if (theActors.length > 0) { %>
-                <% theActors.forEach(movieList => { %>
+                <% theActors.forEach(moviesList => { %>
                     <b>
                         <ul>
                             <li>
-                                <%= `Title: ${movieList.title}` %> 
+                                <%= `Title: ${moviesList.title}` %> 
                             </li>
                             <li>
-                                <%= `Genres: ${movieList.genres}` %> 
+                                <%= `Genres: ${moviesList.genres}` %> 
                             </li>
                             <li>
-                                <%= `Rating: ${movieList.rated}` %> 
+                                <%= `Rating: ${moviesList.rated}` %> 
                             </li>
                             <li>
-                                <%= `Release Year: ${movieList.year}` %></b>
+                                <%= `Release Year: ${moviesList.year}` %></b>
                             </li>
                         </ul>
                     <% }) %>

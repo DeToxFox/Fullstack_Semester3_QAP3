@@ -5,7 +5,7 @@ async function getActors() {
   if (DEBUG) console.log("movies.mongo.dal.getActors()");
   try {
     await dal.connect();
-    const cursor = dal.db("sample_mflix").collection("movieList").find();
+    const cursor = dal.db("sample_mflix").collection("moviesList").find();
     const results = await cursor.toArray();
     return results;
   } catch (error) {
@@ -19,7 +19,7 @@ async function getActorByActorId(id) {
     await dal.connect();
     const result = dal
       .db("sample_mflix")
-      .collection("movieList")
+      .collection("moviesList")
       .findOne({ _id: ObjectId(id) });
     console.log(result);
     return result;
@@ -44,7 +44,7 @@ async function addActor(genres, title, rated, year) {
     await dal.connect();
     const result = await dal
       .db("sample_mflix")
-      .collection("movieList")
+      .collection("moviesList")
       .insertOne(newLogin);
     return result.insertedId;
   } catch (error) {
@@ -58,7 +58,7 @@ async function putActor(id, genres, title, rated, year) {
     await dal.connect();
     const result = await dal
       .db("sample_mflix")
-      .collection("movieList")
+      .collection("moviesList")
       .replaceOne(
         { _id: ObjectId(id) },
         { genres: genres, title: title, rated: rated, year: year }
@@ -75,7 +75,7 @@ async function patchActor(id, genres, title, rated, year) {
     await dal.connect();
     const result = await dal
       .db("sample_mflix")
-      .collection("movieList")
+      .collection("moviesList")
       .updateOne(
         { _id: ObjectId(id) },
         { $set: { genres: genres, title: title, rated: rated, year: year } },
@@ -92,7 +92,7 @@ async function deleteActor(id) {
     await dal.connect();
     const result = dal
       .db("sample_mflix")
-      .collection("movieList")
+      .collection("moviesList")
       .deleteOne({ _id: ObjectId(id) });
     return result;
   } catch (error) {
