@@ -3,7 +3,7 @@
 // Course Name: Full Stack JavaScript
 // Written By: David Turner
 
-// When a path in the NAV on the browser is selected it will route to the named JS file in the routes or routes api folder respectively.  That selection will trigger an HTTP method either upon selection or as a listener is pressed such as a button, the result is that call is built like a function.  The GET/POST/PUT/PATCH/DELETE requests will then go to the DAL (data access layer) where the data from the collection in mongo is retrieved, parsed and sent back to the GET/POST/PUT/PATCH/DELETE that was requested.  This data will be displayed on the on the approriate EJS file and subsequently in the browser.
+// When a path in the NAV on the browser is selected it will route to the named JS file in the routes or routes api folder respectively.  That selection will trigger an HTTP method either upon selection or as a listener is pressed such as a button or <a> tag link, resulting call is built like a function.  The functions here are build around GET/POST/PUT/PATCH/DELETE requests which will then go to the DAL (data access layer) where the data from the specified collection in mongo is retrieved, that data is then parsed and sent back through functions GET/POST/PUT/PATCH/DELETE that were requested.  This data will be displayed through the approriate EJS file and subsequently in the browser.
 
 const express = require("express");
 const methodOverride = require("method-override");
