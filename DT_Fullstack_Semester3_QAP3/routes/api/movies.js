@@ -1,5 +1,4 @@
 var router = require("express").Router();
-//const actorsDal = require('../../services/pg.movies.dal')
 const actorsDal = require("../../services/m.movies.dal");
 var bodyParser = require("body-parser");
 router.use(bodyParser.json());

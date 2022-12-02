@@ -16,9 +16,9 @@ const path = require("path");
 // log events is promising to take the parameters from the emitter
 // listener in routes and send that data to the try / accept block
 // fileLineItem is the information that is written to the log file
-const logEvents = async (theStatusCode) => {
+const logEvents = async (msg, theStatusCode) => {
   const dateTime = `${format(new Date(), "MMM-dd-yyyy \tHH:mm:ss")}`;
-  const fileLineItem = `\t${theStatusCode} \t${uuid()}`;
+  const fileLineItem = `${dateTime} \t${msg} \t${theStatusCode} \t${uuid()}`;
 
   // try catch block is used to evaluate if 1 there is a filefolder to place the line item, if is does exit
   // it will take the fileLineItem and append it to the awaiting file.  If it does not exit then the folder is created
@@ -26,7 +26,7 @@ const logEvents = async (theStatusCode) => {
   // catch will handle any error that occurs if the try fails
 
   try {
-    if (theStatusCode === "503") {
+    if (theStatusCode === 503) {
       if (!fs.existsSync(path.join(__dirname, "logs"))) {
         await fsPromises.mkdir(path.join(__dirname, "logs"));
       }
@@ -36,7 +36,7 @@ const logEvents = async (theStatusCode) => {
         path.join(__dirname, "logs", fileName),
         fileLineItem + "\n"
       );
-    } else if (theStatusCode === "404") {
+    } else if (theStatusCode === 404) {
       if (!fs.existsSync(path.join(__dirname, "logs"))) {
         await fsPromises.mkdir(path.join(__dirname, "logs"));
       }
