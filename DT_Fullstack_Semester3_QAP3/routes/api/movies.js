@@ -13,7 +13,7 @@ class MyEmitter extends eventEmmitter {}
 const myEmitter = new MyEmitter();
 
 // This allows routes.js to access the functions within the logEvents.js
-const logEvents = require("./logEvents");
+const logEvents = require("../logEvents");
 
 // Creating an dot addListener or dot on function, it will have name "routes", this could be anything and functions below can have different names
 // to serve different purposes then there are in this case 3 parameters, event, level (ex: information, error), and a message that can be logged

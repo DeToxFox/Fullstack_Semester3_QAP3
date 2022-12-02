@@ -1,2 +1,8 @@
 Dec-02-2022 	14:59:24 	Status Code:  	503 	0c5e4075-75b4-48fd-b385-4daf3b418e18
 Dec-02-2022 	15:02:26 	Status Code for Post:  	503 	5d5c1461-d5a8-42dd-ab9f-707a3d702d7f
+Dec-02-2022 	15:45:03 	Status Code for API GET by Id:  	503 	00a1f51c-0ceb-48dc-b456-bdc40300291d
+Dec-02-2022 	15:45:57 	Status Code for GET:  	503 	d96a3bb7-5574-4512-9893-f3e6f479e34a
+Dec-02-2022 	15:46:51 	Status Code for PUT by Id:  	503 	1447f42a-9792-4ea2-9acd-e36437e304c6
+Dec-02-2022 	15:47:27 	Status Code for PATCH by Id:  	503 	99ee0400-a607-4c47-93d3-7035266623d6
+Dec-02-2022 	15:47:47 	Status Code for DELETE by Id:  	503 	9fde8264-e0fb-4d75-9211-d6871802c927
+Dec-02-2022 	15:48:20 	Status Code for GET:  	503 	87d2f4fa-f1be-4c6b-82a5-d665b5e53998
