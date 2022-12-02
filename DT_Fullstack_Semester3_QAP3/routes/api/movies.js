@@ -3,6 +3,26 @@ const actorsDal = require("../../services/m.movies.dal");
 var bodyParser = require("body-parser");
 router.use(bodyParser.json());
 
+// This will bring in the "fs" or file structure global object no npm install required
+const fs = require("fs");
+// This will bring in the "events" global object no npm install required
+const eventEmmitter = require("events");
+// Create the class MyEmitter to define it, making sure to the first letter is upper case, this is for classes
+class MyEmitter extends eventEmmitter {}
+// This instantiates a new emitter object that will be needed to access the index page
+const myEmitter = new MyEmitter();
+
+// This allows routes.js to access the functions within the logEvents.js
+const logEvents = require("./logEvents");
+
+// Creating an dot addListener or dot on function, it will have name "routes", this could be anything and functions below can have different names
+// to serve different purposes then there are in this case 3 parameters, event, level (ex: information, error), and a message that can be logged
+myEmitter.on("status", (msg, theStatusCode) => {
+  // once the above part of the listeners has exicuted its block
+  // the logEvents function in logEvents.js will fire and the parameters here will be sent over to be processed
+  logEvents(msg, theStatusCode);
+});
+
 // api/movies
 router.get("/", async (req, res) => {
   if (DEBUG) console.log("ROUTE: /api/movies/ GET " + req.url);
@@ -12,6 +32,9 @@ router.get("/", async (req, res) => {
   } catch {
     // log this error to an error log file.
     res.statusCode = 503;
+    theStatusCode = res.statusCode;
+    msg = "Status Code for API GET: ";
+    myEmitter.emit("status", msg, theStatusCode);
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });
@@ -23,18 +46,23 @@ router.get("/:id", async (req, res) => {
     if (anActor.length === 0) {
       // log this error to an error log file.
       res.statusCode = 404;
+      theStatusCode = res.statusCode;
+      msg = "Status Code for API GET by Id: ";
+      myEmitter.emit("status", msg, theStatusCode);
       res.json({ message: "Not Found", status: 404 });
     } else res.json(anActor);
   } catch {
     // log this error to an error log file.
     res.statusCode = 503;
+    theStatusCode = res.statusCode;
+    msg = "Status Code for API GET by Id: ";
+    myEmitter.emit("status", msg, theStatusCode);
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });
 router.post("/", async (req, res) => {
   if (DEBUG) {
     console.log("ROUTE: /api/movies/ POST");
-    // console.log(req);
   }
   try {
     console.log(req.body.genres);
@@ -44,12 +72,14 @@ router.post("/", async (req, res) => {
       req.body.rated,
       req.body.year
     );
-
     res.statusCode = 201;
     res.json({ message: "Created", status: 201 });
   } catch {
     // log this error to an error log file.
     res.statusCode = 503;
+    theStatusCode = res.statusCode;
+    msg = "Status Code for API POST: ";
+    myEmitter.emit("status", msg, theStatusCode);
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });
@@ -68,6 +98,9 @@ router.put("/:id", async (req, res) => {
   } catch {
     // log this error to an error log file.
     res.statusCode = 503;
+    theStatusCode = res.statusCode;
+    msg = "Status Code for API PUT by Id: ";
+    myEmitter.emit("status", msg, theStatusCode);
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });
@@ -86,6 +119,9 @@ router.patch("/:id", async (req, res) => {
   } catch {
     // log this error to an error log file.
     res.statusCode = 503;
+    theStatusCode = res.statusCode;
+    msg = "Status Code for API PATCH by Id: ";
+    myEmitter.emit("status", msg, theStatusCode);
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });
@@ -98,6 +134,9 @@ router.delete("/:id", async (req, res) => {
   } catch {
     // log this error to an error log file.
     res.statusCode = 503;
+    theStatusCode = res.statusCode;
+    msg = "Status Code for API DELETE by Id: ";
+    myEmitter.emit("status", msg, theStatusCode);
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });

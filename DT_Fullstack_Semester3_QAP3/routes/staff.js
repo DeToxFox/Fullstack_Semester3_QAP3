@@ -25,28 +25,36 @@ myEmitter.on("status", (msg, theStatusCode) => {
 
 router.get("/", async (req, res) => {
   // const theMovies = [
-  //     {first_name: 'Youn', last_name: 'Yuh-jung'},
-  //     {first_name: 'Laura', last_name: 'Dern'},
-  //     {first_name: 'Regina', last_name: 'King'}
+  //     {title: 'Terminator', genres: 'Action', rated: 'R', , year: '1984'},
+  //     {title: 'Terminator 2', genres: 'Action', rated: 'R', , year: '1991'},
+  //     {title: 'Terminator 3', genres: 'Action', rated: 'R', , year: '2003'},
   // ];
   try {
     let theMovies = await staffDal.getMovies();
     if (DEBUG) console.table(theMovies);
     res.render("staff", { theMovies });
   } catch {
+    res.statusCode = 503;
+    theStatusCode = res.statusCode;
+    msg = "Status Code for GET: ";
+    myEmitter.emit("status", msg, theStatusCode);
     res.render("503");
   }
 });
 
 router.get("/:id", async (req, res) => {
   // const anActor = [
-  //     {first_name: 'Regina', last_name: 'King'}
+  //     {title: 'Terminator', genres: 'Action', rated: 'R', , year: '1984'},
   // ];
   try {
     let anActor = await staffDal.getMoviesByMovieId(req.params.id); // from postgresql
     if (anActor.length === 0) res.render("no record");
     else res.render("staff", { anActor });
   } catch {
+    res.statusCode = 503;
+    theStatusCode = res.statusCode;
+    msg = "Status Code for GET by Id: ";
+    myEmitter.emit("status", msg, theStatusCode);
     res.render("503");
   }
 });
@@ -93,16 +101,14 @@ router.post("/", async (req, res) => {
       req.body.rated,
       req.body.year
     );
-    // let message = "Post Successful";
     res.redirect("/staff/");
-    // res.render("staff", { message });
     console.log("STAFF POST WORKED");
   } catch {
+    // log this error to an error log file.
     res.statusCode = 503;
     theStatusCode = res.statusCode;
     msg = "Status Code for POST: ";
     myEmitter.emit("status", msg, theStatusCode);
-    // log this error to an error log file.
     res.render("503");
   }
 });
@@ -123,6 +129,10 @@ router.put("/:id", async (req, res) => {
     res.redirect("/staff/");
   } catch {
     // log this error to an error log file.
+    res.statusCode = 503;
+    theStatusCode = res.statusCode;
+    msg = "Status Code for PUT by Id: ";
+    myEmitter.emit("status", msg, theStatusCode);
     res.render("503");
   }
 });
@@ -139,6 +149,10 @@ router.patch("/:id", async (req, res) => {
     res.redirect("/staff/");
   } catch {
     // log this error to an error log file.
+    res.statusCode = 503;
+    theStatusCode = res.statusCode;
+    msg = "Status Code for PATCH by Id: ";
+    myEmitter.emit("status", msg, theStatusCode);
     res.render("503");
   }
 });
@@ -149,6 +163,10 @@ router.delete("/:id", async (req, res) => {
     res.redirect("/staff/");
   } catch {
     // log this error to an error log file.
+    res.statusCode = 503;
+    theStatusCode = res.statusCode;
+    msg = "Status Code for DELETE by Id: ";
+    myEmitter.emit("status", msg, theStatusCode);
     res.render("503");
   }
 });
