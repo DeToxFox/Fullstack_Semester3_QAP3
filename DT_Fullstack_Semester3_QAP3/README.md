@@ -3,7 +3,8 @@
 Semester 3 QAP3, build a RESTful API, Node/Express/EJS/PostgreSQ
 
 - Date: Nov 25, 2022
-- Assignment: QAP3 - build a RESTful API, Node/Express/EJS/PostgreSQ
+- Assignment: QAP3
+- Assignment Detail: Build a RESTful API, Node/Express/EJS/ PostgreSQ
 - Course Name: Full Stack JavaScript
 - Written By: David Turner
 
