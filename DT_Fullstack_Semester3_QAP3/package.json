@@ -19,6 +19,7 @@
   "homepage": "https://github.com/kbalsom/fullstackqap3#readme",
   "dependencies": {
     "-": "^0.0.1",
+    "bootstrap": "^5.2.3",
     "date": "^2.0.2",
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 // const staffDal = require('../services/pg.staff.dal')
-const staffDal = require("../services/m.staff.dal");
+const staffDal = require("../services/m.movies.dal");
 
 // This will bring in the "fs" or file structure global object no npm install required
 const fs = require("fs");
@@ -88,7 +88,7 @@ router.get("/:id/delete", async (req, res) => {
 router.post("/", async (req, res) => {
   if (DEBUG) console.log("movie.POST");
   try {
-    await staffDal.addMoviess(
+    await staffDal.addMovie(
       req.body.genres,
       req.body.title,
       req.body.rated,
