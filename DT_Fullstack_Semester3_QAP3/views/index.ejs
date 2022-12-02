@@ -1,11 +1,16 @@
 <html lang="en">
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
   <%- include('./partials/head.ejs') %>
   <body>
     <%- include('./partials/nav.ejs') %>
     <div class="text-center" style="text-align: center">
-      <!-- <h1 class="">David Turners QAP3</h1> -->
-      <h1 class="mt-4">Welcome To Purple Monkey Movie Listings Main Page</h1>
-      <ul>
+      <h1 class="mt-4">Welcome To Purple Monkey DVD Rental Main Page</h1>
+      <ul style="list-style-type: none">
         <li>
           <h1 class="index_li"></h1>
           Test 1 - A customer can see a web page listing all the movies from the
@@ -25,7 +30,7 @@
         <li>
           <h1 class="index_li"></h1>
           Test 4 - Managment can PUT new entries overwriting an existing entry,
-          PATCH updating 1 or more attributes (if available), and delete an
+          PATCH updating 1 or more attributes (if available), and DELETE an
           entery in the moviesList collections of the dvd database.
         </li>
       </ul>
