@@ -17,11 +17,10 @@ const logEvents = require("./logEvents");
 
 // Creating an dot addListener or dot on function, it will have name "routes", this could be anything and functions below can have different names
 // to serve different purposes then there are in this case 3 parameters, event, level (ex: information, error), and a message that can be logged
-myEmitter.on("status", (theStatusCode) => {
-  console.log(theStatusCode);
+myEmitter.on("status", (msg, theStatusCode) => {
   // once the above part of the listeners has exicuted its block
   // the logEvents function in logEvents.js will fire and the parameters here will be sent over to be processed
-  logEvents(theStatusCode);
+  logEvents(msg, theStatusCode);
 });
 
 router.get("/", async (req, res) => {
@@ -97,10 +96,12 @@ router.post("/", async (req, res) => {
     // let message = "Post Successful";
     res.redirect("/staff/");
     // res.render("staff", { message });
-    console.log("STAFF POST WORKED DT");
+    console.log("STAFF POST WORKED");
   } catch {
     res.statusCode = 503;
-    myEmitter.emit("status", `${res.statusCode}`);
+    theStatusCode = res.statusCode;
+    msg = "Status Code for POST: ";
+    myEmitter.emit("status", msg, theStatusCode);
     // log this error to an error log file.
     res.render("503");
   }

@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kbalsom/fullstackqap3.git"
+    "url": "git+https://github.com/DeToxFox/Fullstack_Semester3_QAP3.git"
   },
   "author": "David Turner",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kbalsom/fullstackqap3/issues"
+    "url": "https://github.com/DeToxFox/Fullstack_Semester3_QAP3.git"
   },
-  "homepage": "https://github.com/kbalsom/fullstackqap3#readme",
+  "homepage": "",
   "dependencies": {
     "-": "^0.0.1",
     "bootstrap": "^5.2.3",
