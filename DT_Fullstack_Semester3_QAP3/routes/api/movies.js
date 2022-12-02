@@ -1,6 +1,8 @@
 var router = require("express").Router();
 //const actorsDal = require('../../services/pg.movies.dal')
 const actorsDal = require("../../services/m.movies.dal");
+var bodyParser = require("body-parser");
+router.use(bodyParser.json());
 
 // api/movies
 router.get("/", async (req, res) => {
@@ -33,10 +35,16 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   if (DEBUG) {
     console.log("ROUTE: /api/movies/ POST");
-    //    console.log(req);
+    // console.log(req);
   }
   try {
-    await actorsDal.addMovie(req.body.title, req.body.year);
+    console.log(req.body.genres);
+    await actorsDal.addMovie(
+      req.body.genres,
+      req.body.title,
+      req.body.rated,
+      req.body.year
+    );
 
     res.statusCode = 201;
     res.json({ message: "Created", status: 201 });

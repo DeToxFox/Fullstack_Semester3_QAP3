@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 // const mngrDal = require('../services/pg.mngr.dal')
-const mngrDal = require("../services/m.mngr.dal");
+const mngrDal = require("../services/m.movies.dal");
 
 router.get("/", async (req, res) => {
   // const theMovies= [
